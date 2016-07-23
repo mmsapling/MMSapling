@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">陪着烟消遣</string>
+    <string name="navigation_example">例子</string>
+    <string name="navigation_widget">控件</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="author">陪着烟消遣</string>
+    <string name="menu_search">搜索</string>
+    <string name="hint_username">用户名</string>
+    <string name="hint_pwd_num6">密码</string>
+    <string name="login">登录</string>
+    <string name="exit">退出Activity</string>
+    <string name="confirm">确定</string>
+    <string name="error_pwd_long">密码太长</string>
+    <string name="error_user_sb">你是傻逼吗？哈哈哈！</string>
+    <string name="author_introduce">作者简介</string>
+    <string name="content_introduce">内容简介</string>
+    <string name="directory">目录</string>
+    <string name="article1">红烧鱼</string>
+    <string name="article2">腊香肠</string>
+    <string name="article3">好多好吃的</string>
+
+
+    <array name="widget_arr">
+        <item>TextInputLayout</item>
+        <item>AppBarLayout</item>
+        <item>TabLayout</item>
+    </array>
+</resources>
