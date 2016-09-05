@@ -1,114 +1,133 @@
 package com.tylz.mmsapling.utils;
 
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 
 import com.tylz.mmsapling.base.BaseApplication;
 
-/**
- * @author cxw
- * @time 2016/3/18 0018 15:02
- * @des 和UI相关的一些公共方法
- * @updateAuthor tylz
- * @updateDate 2016/3/18 0018
- * @updateDes
- */
-public class UIUtils {
-    /**
-     * 得到上下文
-     */
-    public static Context getContext() {
-        return BaseApplication.getContext();
-    }
 
-    /**
-     * 得到Resource对象
-     */
-    public static Resources getResources() {
-        return getContext().getResources();
-    }
+public class UIUtils
+{
 
-    /**
-     * 得到String.xml中定义的字符信息
-     */
-    public static String getString(int resId) {
-        return getResources().getString(resId);
-    }
+	/**
+	 * 上下文的获取
+	 *
+	 * @return
+	 */
+	public static Context getContext()
+	{
+		return BaseApplication.getContext();
+	}
 
-    /**
-     * 得到String.xml中定义的字符数组信息
-     */
-    public static String[] getStrings(int resId) {
-        return getResources().getStringArray(resId);
-    }
+	/**
+	 * 获取资源
+	 *
+	 * @return
+	 */
+	public static Resources getResources()
+	{
+		return getContext().getResources();
+	}
 
-    /**
-     * 得到color.xml中定义的颜色信息
-     */
-    public static int getColor(int resId) {
-        return getResources().getColor(resId);
-    }
+	public static long getMainThreadId()
+	{
+		return BaseApplication.getMainThreadId();
+	}
 
-    /**
-     * 得到主线程的线程id
-     */
-    public static long getMainThreadId() {
-        return BaseApplication.getMainThreadId();
-    }
+	public static Handler getMainThreadHandler()
+	{
+		return BaseApplication.getMainThreadHandler();
+	}
 
-    /**
-     * 得到主线程的一个handler
-     */
-    public static Handler getMainThreadHandler() {
-        return BaseApplication.getMainThreadHandler();
-    }
+	/**
+	 * 主线程中执行 任务
+	 *
+	 * @param task
+	 */
+	public static void runOnUiThread(Runnable task)
+	{
+		long currentThreadId = android.os.Process.myTid();
+		long mainThreadId = getMainThreadId();
 
-    /**
-     * 安全的执行一个任务
-     */
-    public static void postTaskSafely(Runnable task) {
-        // 得到当前的线程
-        long curThreadId = android.os.Process.myTid();
-        // 得到主线程的线程id
-        long mainThreadId = getMainThreadId();
-        if (curThreadId == mainThreadId) {
-            // 如果当前是在主线程-->直接执行
-            task.run();
-        } else {
-            // 如果当前是在子线程-->通过消息机制,把任务发送到主线程执行
-            getMainThreadHandler().post(task);
-        }
-    }
+		if (currentThreadId == mainThreadId)
+		{
+			// 如果在主线程中执行
+			task.run();
+		}
+		else
+		{
+			// 需要转的主线程执行
+			getMainThreadHandler().post(task);
+		}
+	}
 
-    /**
-     * 得到应用程序的包名
-     */
-    public static String getPackageName() {
-        return getContext().getPackageName();
-    }
+	/**
+	 *
+	 * @param dip
+	 * @return
+	 */
+	public static int dip2px(int dip)
+	{
+		// 公式 1: px = dp * (dpi / 160)
+		// 公式 2: dp = px / denistity;
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		float          density = metrics.density;
+		// metrics.densityDpi
+		return (int) (dip * density + 0.5f);
+	}
 
-    /**
-     * dp-->px
-     */
-    public static int dp2Px(int dp) {
-        //1.px/dp = density    ==> px和dp倍数关系
-        //2.px/(ppi/160) = dp  ==>ppi
+	public static int px2dip(int px)
+	{
+		// 公式 1: px = dp * (dpi / 160)
+		// 公式 2: dp = px / denistity;
+		DisplayMetrics metrics = getResources().getDisplayMetrics();
+		float          density = metrics.density;
+		// metrics.densityDpi
+		return (int) (px / density + 0.5f);
+	}
 
-        float density = getResources().getDisplayMetrics().density; //1.5
-        //        int ppi = getResources().getDisplayMetrics().densityDpi;//160 240 320
+	public static String getString(int resId)
+	{
+		return getResources().getString(resId);
+	}
 
-        int px = (int) (dp * density + .5f);
-        return px;
-    }
+	public static String getPackageName()
+	{
+		return getContext().getPackageName();
+	}
 
-    /**
-     * px-->dp
-     */
-    public static int px2Dp(int px) {
-        //1.px/dp = density    ==> px和dp倍数关系
-        float density = getResources().getDisplayMetrics().density; //1.5
-        int dp = (int) (px / density + .5f);
-        return dp;
-    }
+	public static String[] getStringArray(int resId)
+	{
+		return getResources().getStringArray(resId);
+	}
+
+	public static int getColor(int resId)
+	{
+		return getResources().getColor(resId);
+	}
+
+	/**
+	 * 执行延时操作
+	 *
+	 * @param task
+	 * @param delay
+	 */
+	public static void postDelayed(Runnable task, long delay)
+	{
+		getMainThreadHandler().postDelayed(task, delay);
+	}
+
+	/**
+	 * 移除任务
+	 *
+	 * @param task
+	 */
+	public static void removeCallbacks(Runnable task)
+	{
+		getMainThreadHandler().removeCallbacks(task);
+	}
+
 }

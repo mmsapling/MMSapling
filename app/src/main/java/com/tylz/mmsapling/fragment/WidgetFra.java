@@ -23,7 +23,6 @@ import com.tylz.mmsapling.widgets.RecyclerItemClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /*
@@ -37,7 +36,6 @@ import butterknife.ButterKnife;
 public class WidgetFra
         extends Fragment
 {
-    @Bind(R.id.widget_recyclerview)
     RecyclerView mRecyclerview;
     List<String> mDatas;
 
@@ -47,9 +45,11 @@ public class WidgetFra
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fra_widget, null);
-        ButterKnife.bind(this, view);
-        return view;
+        mRecyclerview = new RecyclerView(UIUtils.getContext());
+        mRecyclerview.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                                                                 ViewGroup.LayoutParams.MATCH_PARENT));
+
+        return mRecyclerview;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class WidgetFra
     }
 
     private void setupRecyclerView(RecyclerView recyclerview) {
-        String[] arr = UIUtils.getStrings(R.array.widget_arr);
+        String[] arr = UIUtils.getStringArray(R.array.widget_arr);
         mDatas = arr2list(arr);
         recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerview.setHasFixedSize(true);

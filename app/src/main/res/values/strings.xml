@@ -26,4 +26,10 @@
         <item>AppBarLayout</item>
         <item>TabLayout</item>
     </array>
+    <array name="example_arr">
+        <item>LoadingPager</item>
+        <item>强大的LoadingPager</item>
+        <item>ListView超级适配器</item>
+        <item>BaseHolder</item>
+    </array>
 </resources>
