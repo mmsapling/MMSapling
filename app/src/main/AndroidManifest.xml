@@ -24,6 +24,7 @@
         <activity android:name=".ui.example.LoadingPagerUI"/>
         <activity android:name=".ui.example.LoadingPagerPowerUI"/>
         <activity android:name=".ui.example.SuperAdapterUI"/>
+        <activity android:name=".ui.example.HolderUI"/>
     </application>
 
 </manifest>

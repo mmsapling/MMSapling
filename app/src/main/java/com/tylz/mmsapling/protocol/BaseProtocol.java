@@ -1,5 +1,7 @@
 package com.tylz.mmsapling.protocol;
 
+import android.text.TextUtils;
+
 import com.tylz.mmsapling.http.HttpUrl;
 import com.tylz.mmsapling.utils.FileUtils;
 import com.tylz.mmsapling.utils.IOUtils;
@@ -22,7 +24,7 @@ import okhttp3.Response;
  *  @文件名:   BaseProtocol
  *  @创建者:   陈选文
  *  @创建时间:  2016/9/5 21:38
- *  @描述：    TODO
+ *  @描述：    基类缓存
  */
 public abstract class BaseProtocol<T> {
     private static final String DIR      = "json";
@@ -38,7 +40,7 @@ public abstract class BaseProtocol<T> {
         //1.到缓存中找
         T data = getDataFromLocal(index, fileName);
         if (data != null) {
-            LogUtils.e("从本地缓存中取数据");
+            LogUtils.e("从本地缓存中取数据" + index);
             return data;
         }
         //2.从网络中去取数据
@@ -104,8 +106,14 @@ public abstract class BaseProtocol<T> {
                 //过期了
                 return null;
             }
-            String json = reader.readLine();//读取json
-            return parseJson(json);
+            StringBuilder sb = new StringBuilder();
+            String temp ="";
+            while(!TextUtils.isEmpty(temp = reader.readLine())){
+                    sb.append(temp + "\r\n" );
+            }
+            //消除最后多添加的换行
+            int i = sb.lastIndexOf("\r\n");
+            return parseJson(sb.substring(0,i).toString());
         } catch (Exception e) {
             e.printStackTrace();
             return null;

@@ -6,9 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tylz.mmsapling.R;
 import com.tylz.mmsapling.base.RecyclerViewAdapter;
-import com.tylz.mmsapling.utils.UIUtils;
+import com.tylz.mmsapling.factory.BaseViewFactory;
 
 import java.util.List;
 
@@ -29,14 +28,15 @@ public class StringAdapter
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        TextView tv = new TextView(UIUtils.getContext());
-        tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                                      ViewGroup.LayoutParams.WRAP_CONTENT));
-        int padding = UIUtils.dip2px(10);
-        tv.setPadding(padding, padding, padding, padding);
-        tv.setTextColor(UIUtils.getColor(R.color.colorPrimary));
-        //      TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,12,UIUtils.getResources().getDisplayMetrics());
-        tv.setTextSize(18);
+//        TextView tv = new TextView(UIUtils.getContext());
+//        tv.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+//                                                      ViewGroup.LayoutParams.WRAP_CONTENT));
+//        int padding = UIUtils.dip2px(10);
+//        tv.setPadding(padding, padding, padding, padding);
+//        tv.setTextColor(UIUtils.getColor(R.color.colorPrimary));
+//        //      TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,12,UIUtils.getResources().getDisplayMetrics());
+//        tv.setTextSize(18);
+        TextView tv = BaseViewFactory.getBaseTextView();
         return new ViewHolder(tv);
     }
 

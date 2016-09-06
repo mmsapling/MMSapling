@@ -23,7 +23,7 @@ import java.util.Map;
  *  @创建时间:  2016/9/3 22:31
  *  @描述：    TODO
  */
-public abstract class BaseFragment
+public abstract class BaseFra
         extends Fragment
 {
     private LoadingPager mPager;

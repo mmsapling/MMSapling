@@ -7,6 +7,7 @@ import android.widget.ListView;
 import com.tylz.mmsapling.adapter.SuperBaseAdapter;
 import com.tylz.mmsapling.base.LoadingPager;
 import com.tylz.mmsapling.bean.ShopBean;
+import com.tylz.mmsapling.conf.Constants;
 import com.tylz.mmsapling.factory.BaseViewFactory;
 import com.tylz.mmsapling.holder.BaseHolder;
 import com.tylz.mmsapling.holder.ShopHolder;
@@ -32,8 +33,8 @@ public class SuperAdapterUI
     private int page ;
     @Override
     protected void initData() {
-        super.initData();
         mToolbar.setTitle("ListView强大的适配器");
+        super.initData();
         mProtocol = new SuperAdapterProtocol();
         page = 0;
     }
@@ -42,7 +43,12 @@ public class SuperAdapterUI
     protected LoadingPager.LoadedResult onLoadData() {
         try {
 
-            mDatas = mProtocol.loadData(page++,CACHE_NAME);
+            mDatas = mProtocol.loadData(page,CACHE_NAME);
+            if(mDatas == null || mDatas.size() == 0 || mDatas.size() < Constants.PAGE_SIZE){
+                page = 0;
+            }else{
+                page++;
+            }
             return checkState(mDatas);
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,7 +78,7 @@ public class SuperAdapterUI
         {
             //因为这里接口问题，太无语,实际上起始位置 和每页的数量由我们自己定
             List<ShopBean> beanList = mProtocol.loadData(page++, mProtocol.fileName);
-            if(beanList == null || beanList.size() == 0){
+            if(beanList == null || beanList.size() == 0 ){
                 page--;
             }
             return beanList;

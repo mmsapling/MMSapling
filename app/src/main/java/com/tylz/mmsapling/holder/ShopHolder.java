@@ -27,7 +27,6 @@ public class ShopHolder
     CircleImageView mItemIvRobot;
     @Bind(R.id.item_tv_title)
     TextView        mItemTvTitle;
-
     @Override
     protected View initView() {
         View view = View.inflate(UIUtils.getContext(), R.layout.item_list_super, null);

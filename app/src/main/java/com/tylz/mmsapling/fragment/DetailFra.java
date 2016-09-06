@@ -18,12 +18,12 @@ import com.tylz.mmsapling.R;
  *  @创建时间:  2016/7/23 13:57
  *  @描述：    TODO
  */
-public class DetailFragment
+public class DetailFra
         extends Fragment
 {
-    public static DetailFragment newInstance(String info) {
-        Bundle         args     = new Bundle();
-        DetailFragment fragment = new DetailFragment();
+    public static DetailFra newInstance(String info) {
+        Bundle    args     = new Bundle();
+        DetailFra fragment = new DetailFra();
         args.putString("info", info);
         fragment.setArguments(args);
         return fragment;

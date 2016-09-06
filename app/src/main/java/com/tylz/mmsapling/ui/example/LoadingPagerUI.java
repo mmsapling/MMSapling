@@ -20,8 +20,8 @@ public class LoadingPagerUI
 
     @Override
     protected void initData() {
-        super.initData();
         mToolbar.setTitle("LoadingPager");
+        super.initData();
     }
 
     @Override

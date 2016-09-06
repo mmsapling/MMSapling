@@ -2,7 +2,6 @@ package com.tylz.mmsapling.ui.example;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -13,9 +12,6 @@ import com.tylz.mmsapling.base.LoadingPager;
 
 import java.util.List;
 import java.util.Map;
-
-import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /*
  *  @项目名：  MMSapling 
@@ -28,11 +24,7 @@ import butterknife.ButterKnife;
 public abstract class BaseParentUI
         extends AppCompatActivity
 {
-    @Bind(R.id.toolbar)
     Toolbar      mToolbar;
-    @Bind(R.id.appbar)
-    AppBarLayout mAppbar;
-    @Bind(R.id.fl_content)
     FrameLayout  mFlContent;
     LoadingPager mLoadingPager;
 
@@ -40,7 +32,8 @@ public abstract class BaseParentUI
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui_base);
-        ButterKnife.bind(this);
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mFlContent = (FrameLayout) findViewById(R.id.fl_content);
         initData();
         mLoadingPager = new LoadingPager(this) {
             @Override

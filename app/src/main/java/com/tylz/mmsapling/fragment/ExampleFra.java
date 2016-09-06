@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,19 +11,18 @@ import android.view.ViewGroup;
 
 import com.tylz.mmsapling.R;
 import com.tylz.mmsapling.adapter.StringAdapter;
+import com.tylz.mmsapling.factory.BaseViewFactory;
+import com.tylz.mmsapling.ui.example.HolderUI;
 import com.tylz.mmsapling.ui.example.LoadingPagerPowerUI;
 import com.tylz.mmsapling.ui.example.LoadingPagerUI;
 import com.tylz.mmsapling.ui.example.SuperAdapterUI;
 import com.tylz.mmsapling.utils.UIUtils;
-import com.tylz.mmsapling.widgets.DividerItemDecoration;
 import com.tylz.mmsapling.widgets.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
-
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 
 /*
  *  @项目名：  MMSapling 
@@ -46,8 +43,7 @@ public class ExampleFra
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        mRecyclerview = new RecyclerView(UIUtils.getContext());
-        mRecyclerview.setLayoutParams(new ViewGroup.LayoutParams(MATCH_PARENT, MATCH_PARENT));
+        mRecyclerview = BaseViewFactory.getBaseRecyclerView(getContext());
 
         return mRecyclerview;
     }
@@ -61,13 +57,8 @@ public class ExampleFra
     private void setupRecyclerView(RecyclerView recyclerview) {
         String[] arr = UIUtils.getStringArray(R.array.example_arr);
         mDatas = arr2list(arr);
-        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerview.setHasFixedSize(true);
-        recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
-                                                                 DividerItemDecoration.VERTICAL_LIST));
         recyclerview.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
                                                                           mItemClickListener));
-        recyclerview.setItemAnimator(new DefaultItemAnimator());
         recyclerview.setAdapter(new StringAdapter(getActivity(), mDatas));
     }
 
@@ -92,6 +83,9 @@ public class ExampleFra
                     break;
                 case 2:
                     intent = new Intent(getActivity(), SuperAdapterUI.class);
+                    break;
+                case 3:
+                    intent = new Intent(getActivity(), HolderUI.class);
                     break;
             }
             startActivity(intent);

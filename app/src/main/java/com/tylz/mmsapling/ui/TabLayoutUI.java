@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.tylz.mmsapling.R;
-import com.tylz.mmsapling.fragment.DetailFragment;
+import com.tylz.mmsapling.fragment.DetailFra;
 import com.tylz.mmsapling.utils.UIUtils;
 
 import java.io.IOException;
@@ -85,11 +85,11 @@ public class TabLayoutUI
 
     private void setupViewPager(ViewPager viewPager) {
         MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager());
-        adapter.addFrament(DetailFragment.newInstance(getAsset("article2.txt")),
+        adapter.addFrament(DetailFra.newInstance(getAsset("article2.txt")),
                            UIUtils.getString(R.string.article1));
-        adapter.addFrament(DetailFragment.newInstance(getAsset("article1.txt")),
+        adapter.addFrament(DetailFra.newInstance(getAsset("article1.txt")),
                            UIUtils.getString(R.string.article2));
-        adapter.addFrament(DetailFragment.newInstance(getAsset("article3.txt")),
+        adapter.addFrament(DetailFra.newInstance(getAsset("article3.txt")),
                            UIUtils.getString(R.string.article3));
         viewPager.setAdapter(adapter);
     }

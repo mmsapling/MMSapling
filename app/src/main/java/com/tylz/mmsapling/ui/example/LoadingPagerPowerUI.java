@@ -58,10 +58,10 @@ public class LoadingPagerPowerUI
     }
 
     protected void init() {
+        mToolbar.setTitle("强大的LoadingPager");
         setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mToolbar.setTitle("强大的LoadingPager");
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

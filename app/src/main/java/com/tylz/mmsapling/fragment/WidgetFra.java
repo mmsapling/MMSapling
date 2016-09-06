@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +11,11 @@ import android.view.ViewGroup;
 
 import com.tylz.mmsapling.R;
 import com.tylz.mmsapling.adapter.StringAdapter;
+import com.tylz.mmsapling.factory.BaseViewFactory;
 import com.tylz.mmsapling.ui.AppBarLayoutUI;
 import com.tylz.mmsapling.ui.TabLayoutUI;
 import com.tylz.mmsapling.ui.TextInputLayoutUI;
 import com.tylz.mmsapling.utils.UIUtils;
-import com.tylz.mmsapling.widgets.DividerItemDecoration;
 import com.tylz.mmsapling.widgets.RecyclerItemClickListener;
 
 import java.util.ArrayList;
@@ -45,9 +43,7 @@ public class WidgetFra
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState)
     {
-        mRecyclerview = new RecyclerView(UIUtils.getContext());
-        mRecyclerview.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                                                                 ViewGroup.LayoutParams.MATCH_PARENT));
+        mRecyclerview = BaseViewFactory.getBaseRecyclerView(getContext());
 
         return mRecyclerview;
     }
@@ -61,13 +57,10 @@ public class WidgetFra
     private void setupRecyclerView(RecyclerView recyclerview) {
         String[] arr = UIUtils.getStringArray(R.array.widget_arr);
         mDatas = arr2list(arr);
-        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerview.setHasFixedSize(true);
-        recyclerview.addItemDecoration(new DividerItemDecoration(getActivity(),
-                                                                 DividerItemDecoration.VERTICAL_LIST));
+
         recyclerview.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(),
                                                                           mItemClickListener));
-        recyclerview.setItemAnimator(new DefaultItemAnimator());
+
         recyclerview.setAdapter(new StringAdapter(getActivity(), mDatas));
     }
 
