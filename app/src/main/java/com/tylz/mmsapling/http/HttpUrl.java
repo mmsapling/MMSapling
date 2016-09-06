@@ -11,4 +11,5 @@ package com.tylz.mmsapling.http;
 public interface HttpUrl {
     String BASE_IP                  = "192.168.1.92:8080";
     String BASE                     = "http://" + BASE_IP + "/Workspace/network/app/interface.php?func=";
+    String id = "99222817";
 }

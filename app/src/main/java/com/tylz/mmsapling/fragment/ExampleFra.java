@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 
 import com.tylz.mmsapling.R;
 import com.tylz.mmsapling.adapter.StringAdapter;
-import com.tylz.mmsapling.ui.TabLayoutUI;
-import com.tylz.mmsapling.ui.example.LoadingPagerActivity;
-import com.tylz.mmsapling.ui.example.LoadingPagerPowerActivity;
+import com.tylz.mmsapling.ui.example.LoadingPagerPowerUI;
+import com.tylz.mmsapling.ui.example.LoadingPagerUI;
+import com.tylz.mmsapling.ui.example.SuperAdapterUI;
 import com.tylz.mmsapling.utils.UIUtils;
 import com.tylz.mmsapling.widgets.DividerItemDecoration;
 import com.tylz.mmsapling.widgets.RecyclerItemClickListener;
@@ -85,13 +85,13 @@ public class ExampleFra
             Intent intent = null;
             switch (position) {
                 case 0:
-                    intent = new Intent(getActivity(), LoadingPagerActivity.class);
+                    intent = new Intent(getActivity(), LoadingPagerUI.class);
                     break;
                 case 1:
-                    intent = new Intent(getActivity(), LoadingPagerPowerActivity.class);
+                    intent = new Intent(getActivity(), LoadingPagerPowerUI.class);
                     break;
                 case 2:
-                    intent = new Intent(getActivity(), TabLayoutUI.class);
+                    intent = new Intent(getActivity(), SuperAdapterUI.class);
                     break;
             }
             startActivity(intent);

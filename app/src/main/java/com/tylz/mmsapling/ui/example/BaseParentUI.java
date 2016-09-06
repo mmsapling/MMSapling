@@ -11,6 +11,9 @@ import android.widget.FrameLayout;
 import com.tylz.mmsapling.R;
 import com.tylz.mmsapling.base.LoadingPager;
 
+import java.util.List;
+import java.util.Map;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -32,6 +35,7 @@ public abstract class BaseParentUI
     @Bind(R.id.fl_content)
     FrameLayout  mFlContent;
     LoadingPager mLoadingPager;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,7 @@ public abstract class BaseParentUI
             protected View onCreateSuccessView() {
                 return onSuccessView();
             }
+
             @Override
             protected LoadedResult onStartLoadData() {
                 return onLoadData();
@@ -52,11 +57,13 @@ public abstract class BaseParentUI
         loadData();
 
     }
-    protected void loadData(){
-        if(mLoadingPager != null){
+
+    protected void loadData() {
+        if (mLoadingPager != null) {
             mLoadingPager.loadData();
         }
     }
+
     protected void initData() {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -72,4 +79,19 @@ public abstract class BaseParentUI
     protected abstract LoadingPager.LoadedResult onLoadData();
 
     protected abstract View onSuccessView();
+
+    protected LoadingPager.LoadedResult checkState(Object data)
+    {
+        if (data == null) { return LoadingPager.LoadedResult.EMPTY; }
+
+        if (data instanceof List) {
+            if (((List) data).size() == 0) { return LoadingPager.LoadedResult.EMPTY; }
+        }
+
+        if (data instanceof Map) {
+            if (((Map) data).size() == 0) { return LoadingPager.LoadedResult.EMPTY; }
+        }
+
+        return LoadingPager.LoadedResult.SUCCESS;
+    }
 }

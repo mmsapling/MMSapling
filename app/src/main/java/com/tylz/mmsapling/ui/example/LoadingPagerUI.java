@@ -4,7 +4,7 @@ import android.os.SystemClock;
 import android.view.View;
 
 import com.tylz.mmsapling.base.LoadingPager;
-import com.tylz.mmsapling.factory.BaseTvFactory;
+import com.tylz.mmsapling.factory.BaseViewFactory;
 
 /*
  *  @项目名：  MMSapling 
@@ -14,7 +14,7 @@ import com.tylz.mmsapling.factory.BaseTvFactory;
  *  @创建时间:  2016/9/5 15:35
  *  @描述：    TODO
  */
-public class LoadingPagerActivity
+public class LoadingPagerUI
         extends BaseParentUI
 {
 
@@ -32,6 +32,6 @@ public class LoadingPagerActivity
 
     @Override
     protected View onSuccessView() {
-        return BaseTvFactory.getBaseTextView();
+        return BaseViewFactory.getBaseTextView();
     }
 }

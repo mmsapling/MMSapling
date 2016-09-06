@@ -21,8 +21,9 @@
         <activity android:name=".ui.TextInputLayoutUI"/>
         <activity android:name=".ui.AppBarLayoutUI"/>
         <activity android:name=".ui.TabLayoutUI"/>
-        <activity android:name=".ui.example.LoadingPagerActivity"/>
-        <activity android:name=".ui.example.LoadingPagerPowerActivity"/>
+        <activity android:name=".ui.example.LoadingPagerUI"/>
+        <activity android:name=".ui.example.LoadingPagerPowerUI"/>
+        <activity android:name=".ui.example.SuperAdapterUI"/>
     </application>
 
 </manifest>

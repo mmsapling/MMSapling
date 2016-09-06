@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 
 import com.tylz.mmsapling.R;
 import com.tylz.mmsapling.base.LoadingPager;
-import com.tylz.mmsapling.factory.BaseTvFactory;
+import com.tylz.mmsapling.factory.BaseViewFactory;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
  *  @创建时间:  2016/9/5 16:53
  *  @描述：    TODO
  */
-public class LoadingPagerPowerActivity
+public class LoadingPagerPowerUI
         extends AppCompatActivity
 {
     @Bind(R.id.fl_loading)
@@ -142,7 +142,7 @@ public class LoadingPagerPowerActivity
 
         @Override
         protected View onCreateSuccessView() {
-            return BaseTvFactory.getBaseTextView();
+            return BaseViewFactory.getBaseTextView();
         }
 
         @Override

@@ -15,4 +15,5 @@ public interface Constants {
     String TAG          = "tylz";
     String SP_FILE_NAME = "tylz";
     int DEBUG_LEVEL     = LogUtils.LEVEL_ALL;
+    int PAGE_SIZE       = 10;
 }

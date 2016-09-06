@@ -7,14 +7,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.log.LoggerInterceptor;
 
-
-import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 
 
 /**
@@ -53,11 +54,21 @@ public class BaseApplication
 
         super.onCreate();
         init();
-
+        initOkHttp();
 
 
     }
 
+    private void initOkHttp() {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(new LoggerInterceptor("okhttp"))
+                .connectTimeout(5000L, TimeUnit.MILLISECONDS)
+                .readTimeout(5000L, TimeUnit.MILLISECONDS)
+                //其他配置
+                .build();
+
+        OkHttpUtils.initClient(okHttpClient);
+    }
 
 
     private void init() {
